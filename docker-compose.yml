@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  backend:
+    build: ./backend_rs
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend_rs:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1  
+
+  frontend:
+    build: ./frontend_rs
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
