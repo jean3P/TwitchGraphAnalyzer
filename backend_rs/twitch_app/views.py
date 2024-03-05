@@ -19,7 +19,7 @@ def list_graphs(request: HttpRequest) -> JsonResponse:
 
 
 @csrf_exempt
-def shortest_path(request) -> JsonResponse:
+def shortest_path(request: HttpRequest) -> JsonResponse:
     if request.method != "POST":
         return JsonResponse({"error": "Method not allowed"}, status=405)
 
