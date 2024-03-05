@@ -46,16 +46,6 @@
   background-color: #45a049; /* Darker green on hover */
 }
 
-.graph-visualization {
-  margin-top: 20px;
-  padding: 20px;
-  border: 1px solid #B3B3B3; /* Light gray border for distinction */
-  border-radius: 8px;
-  max-width: 90%; /* Adjusted for better responsiveness */
-  margin-left: auto; /* Centers the graph box */
-  margin-right: auto;
-  background-color: #3a3f4b; /* Slightly darker background for focus */
-}
 
 /* Node Selection Display */
 .node-selection {

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import './App.css';
-import Graph from 'react-vis-network-graph';
-import { v4 as uuidv4 } from 'uuid';
+import {calculateShortestPath, fetchGraphs} from "./hooks/ApiService";
+import GraphVisualization from "./components/GraphVisualization";
 
 
 function App() {
@@ -15,15 +14,18 @@ function App() {
   const [nodeColors, setNodeColors] = useState({}); // New state to track node colors
   const [instructionMessage, setInstructionMessage] = useState("Please select a source node.");
 
-  const fetchGraphs = async () => {
-    try {
-      const response = await axios.get('http://127.0.0.1:8000/api/list_graphs/');
-      const sortedGraphs = response.data.graphs.sort((a, b) => parseInt(a.graph_id, 10) - parseInt(b.graph_id, 10));
-      setGraphs(sortedGraphs);
-      setSelectedGraph(null); // Reset selected graph upon fetching new list
-    } catch (err) {
-      console.error('Failed to fetch graphs', err);
-    }
+  const handleFetchGraphsClick = () => {
+    fetchGraphs(setGraphs, setSelectedGraph)
+        .catch((error) => {
+          console.error('Failed to fetch graphs:', error);
+        });
+  };
+
+  const handleCalculateShortestPathClick = () => {
+    calculateShortestPath(selectedGraph, sourceNode, destinationNode, setShortestPath, setError, updateNodeColor, setInstructionMessage)
+        .catch((error) => {
+          console.error('Failed to calculate shortest path:', error);
+        });
   };
 
   const updateNodeColor = (nodeId, color) => {
@@ -34,6 +36,8 @@ function App() {
     return shortestPath.includes(edge.source_node_id) && shortestPath.includes(edge.destiny_node_id);
   };
 
+
+  // Graph configuration
   const graphData = selectedGraph ? {
     nodes: selectedGraph.features.map(node => ({
       id: node.numeric_id.toString(),
@@ -68,6 +72,7 @@ function App() {
     },
   };
 
+  // Defining the behaviour of the Graph
   const events = {
     select: function(event) {
       const {nodes} = event;
@@ -86,54 +91,6 @@ function App() {
     }
   };
 
-  const calculateShortestPath = async () => {
-    const url = 'http://127.0.0.1:8000/api/shortest_path/';
-
-    console.log('Selected Graph ID:', selectedGraph.graph_id);
-    console.log('Source Node:', sourceNode);
-    console.log('Destination Node:', destinationNode);
-
-    const data = JSON.stringify({
-      graph_id: selectedGraph.graph_id.toString(),
-      source_node: sourceNode.toString(),
-      destination_node: destinationNode.toString(),
-    });
-
-    console.log('Sending data:', data);
-
-    try {
-      const response = await axios.post(url, data, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      console.log('Shortest path calculated:', response.data);
-      if (response.data.path) {
-        setShortestPath(response.data.path);
-        setError(""); // Clear any previous errors
-        // Update node colors for the shortest path
-        response.data.path.forEach((nodeId, index) => {
-          // Optionally, keep the source and destination node colors unchanged
-          if (nodeId !== sourceNode && nodeId !== destinationNode) {
-            updateNodeColor(nodeId, '#90ee90'); // Light green, for example
-          }
-        });
-        const pathString = response.data.path.join(' -> ');
-        setInstructionMessage(`The path is: [${pathString}].`);
-      } else {
-        // Handle no path found
-        setError("No path found");
-        setShortestPath([]); // Clear any previous path
-        setInstructionMessage("Please select new source and destination nodes.");
-      }
-    } catch (error) {
-      console.error('Failed to calculate shortest path:', error.response ? error.response.data : error);
-      setError("Failed to calculate shortest path");
-      setInstructionMessage("Please try again.");
-    }
-  };
-
-
   const resetSelection = () => {
     setSourceNode(null);
     setDestinationNode(null);
@@ -147,7 +104,7 @@ function App() {
       <div className="App">
         <header className="App-header">
           <h1>Graph Visualization</h1>
-          <button onClick={fetchGraphs} className="fetch-graphs">Fetch Graphs</button>
+          <button onClick={handleFetchGraphsClick} className="fetch-graphs">Fetch Graphs</button>
           <div className="tabs">
             {graphs.length > 0 ? (
                 graphs.map((graph) => (
@@ -172,21 +129,18 @@ function App() {
           )}
 
           {graphData && (
-              <div className="graph-visualization">
-                <Graph
-                    key={uuidv4()}
-                    graph={graphData}
-                    options={graphOptions}
-                    events={events}
-                />
-              </div>
+              <GraphVisualization
+                  graphData={graphData}
+                  graphOptions={graphOptions}
+                  events={events}
+              />
           )}
           <div className="node-selection">
             {sourceNode && <p className="node-info">Source Node: {sourceNode}</p>}
             {destinationNode && <p className="node-info">Destination Node: {destinationNode}</p>}
             {sourceNode && destinationNode && (
                 <>
-                  <button className="action-button calculate-path-button" onClick={calculateShortestPath}> Shortest Path (BFS)
+                  <button className="action-button calculate-path-button" onClick={handleCalculateShortestPathClick}> Shortest Path (BFS)
                   </button>
                   <button className="action-button reset-button" onClick={resetSelection}>Reset</button>
                 </>
