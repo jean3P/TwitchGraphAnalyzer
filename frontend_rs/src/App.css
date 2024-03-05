@@ -1,0 +1,103 @@
+.App {
+  text-align: center;
+  color: #E3E3E3;
+  background-color: #252839;
+}
+
+.App-header {
+  background-color: #6772A4;
+  padding: 20px;
+  font-family: 'Roobert', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #C2A2FF;
+  color: #333;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.tab:hover,
+.tab.active {
+  background-color: #a291cc;
+}
+
+.fetch-graphs {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4CAF50; /* Green background */
+  color: white;
+  margin-bottom: 20px; /* Space between button and tabs */
+  cursor: pointer;
+}
+
+.fetch-graphs:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.graph-visualization {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #B3B3B3; /* Light gray border for distinction */
+  border-radius: 8px;
+  max-width: 90%; /* Adjusted for better responsiveness */
+  margin-left: auto; /* Centers the graph box */
+  margin-right: auto;
+  background-color: #3a3f4b; /* Slightly darker background for focus */
+}
+
+/* Node Selection Display */
+.node-selection {
+  margin-top: 20px;
+  text-align: center;
+  color: #FFF;
+}
+
+/* Node Info Paragraph Styling */
+.node-info {
+  background-color: #50597B;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Styling for Action Buttons */
+.action-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  color: #FFF;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 5px;
+  transition: background-color 0.3s;
+}
+
+.calculate-path-button {
+  background-color: #4CAF50; /* Green */
+}
+
+.calculate-path-button:hover {
+  background-color: #45a049; /* Darker Green */
+}
+
+.reset-button {
+  background-color: #FF4136; /* Red */
+}
+
+.reset-button:hover {
+  background-color: #E82C0C; /* Darker Red */
+}
