@@ -69,3 +69,7 @@ BFS(Graph, StartNode, GoalNode):
 
     return None  // GoalNode is not reachable from StartNode
 ```
+
+### License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
