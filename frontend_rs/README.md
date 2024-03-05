@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Twitch Gamers Social Network Visualization
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This React application serves as the frontend for visualizing the Twitch Gamers Social Network. It interacts with a Django REST API to fetch graph data and calculate the shortest paths between nodes, enabling users to explore Twitch's complex social dynamics through an intuitive interface.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Graph Visualization**: Utilize `react-vis-network-graph` to display the Twitch Gamers Social Network, allowing users to visually navigate through nodes (users) and edges (mutual relationships).
+- **Shortest Path Calculation**: Provides functionality to select any two nodes within the graph and compute the shortest path between them, highlighting the path within the visualization.
+- **Dynamic Data Fetching**: Seamlessly integrates with the backend API to fetch the latest graph data and updates the visualization accordingly.
+- **Interactive UI**: Offers an interactive user interface for selecting nodes and initiating graph-based operations like shortest path calculation.
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+- Node.js (Preferably the latest LTS version)
+- npm (Comes with Node.js)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
 
-### `npm run build`
+1. **Clone the Repository**
+    ```bash
+    git clone <repository-url>
+    cd <repository-directory>
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Install Dependencies**
+    ```bash
+    npm install
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Start the Development Server**
+    ```bash
+    npm start
+    ```
+   This will launch the app in the development mode.\
+   Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Usage
 
-### `npm run eject`
+After starting the application, navigate through the interactive UI to explore the Twitch Gamers Social Network. The application facilitates:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Graph Visualization**: Dynamically visualize Twitch users and their connections.
+- **Shortest Path Discovery**: Select two nodes and calculate the shortest path between them.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### License
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

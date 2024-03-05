@@ -1,7 +1,7 @@
 FROM node:18 AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm install  # Install dependencies
+RUN npm install --fetch-retries=5 --fetch-retry-factor=2 --fetch-retry-mintimeout=10000 # Install dependencies
 COPY . ./
 RUN npm run build
 
