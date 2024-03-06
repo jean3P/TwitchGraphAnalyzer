@@ -3,7 +3,7 @@ from collections import deque
 
 from twitch_app.src.classes.Graph import Graph
 
-# Define a generic type variable for the node identifier
+# Generic type variable for the node identifier
 
 NodeId = TypeVar('NodeId')
 
