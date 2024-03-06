@@ -103,7 +103,7 @@ function App() {
   return (
       <div className="App">
         <header className="App-header">
-          <h1>Graph Visualization</h1>
+          <h1>Twitch Graph Visualization</h1>
           <button onClick={handleFetchGraphsClick} className="fetch-graphs">Fetch Graphs</button>
           <div className="tabs">
             {graphs.length > 0 ? (
