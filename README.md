@@ -6,7 +6,7 @@ TwitchGraphAnalyzer is an interactive platform designed for analyzing the Twitch
 
 The platform operates through a series of user interactions, facilitated by the React frontend and processed by the Django backend. Here's an overview of the workflow:
 
-1. **Fetch Graphs**: Users initiate a request to view available network graphs by clicking the "Fetch Graphs" button. The React app sends a request to the Django backend, which retrieves the list of graphs from the database and returns it to the frontend. The available graphs are then displayed to the user.
+1. **Fetch Graphs**: Users initiate a request to view available network graphs by clicking the "Fetch Graphs" button. The React app sends a request to the Django backend, which retrieves the list of graphs. The available graphs are then displayed to the user.
 
 2. **Select Graph**: Upon displaying the graph list, users can select a specific graph for analysis. The UI updates to show the selected graph.
 
